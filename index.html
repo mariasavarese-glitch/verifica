@@ -139,19 +139,18 @@ function addMsg(text, type) {
 }
 
 async function callAPI(msgs, system) {
-  const r = await fetch("https://api.anthropic.com/v1/messages", {
+  const allMsgs = [{role:"system", content: system}, ...msgs];
+  const r = await fetch("https://veri.mariasavarese.workers.dev/", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 1000,
-      system: system,
-      messages: msgs
+      model: "llama-3.3-70b-versatile",
+      messages: allMsgs
     })
   });
   if (!r.ok) throw new Error("HTTP " + r.status);
   const d = await r.json();
-  return d.content[0].text;
+  return d.choices[0].message.content;
 }
 
 async function startChat() {
@@ -211,7 +210,7 @@ async function finishTest() {
   const transcript = messages.map(m => m.role.toUpperCase() + ": " + m.content).join("\n\n");
   const evalPrompt = EVAL_INTRO + "\n\n" + EVAL_SCALE + "\n\nRispondi SOLO con un oggetto JSON valido, senza testo prima o dopo, nel formato esatto:\n{\"voto\":7,\"giudizio\":\"testo breve\",\"punti_forza\":\"testo\",\"da_migliorare\":\"testo\"}\n\nColloquio:\n" + transcript;
   try {
-    const raw = await callAPI([{role:"user", content: evalPrompt}], "Sei un valutatore scolastico. Rispondi SOLO con JSON valido.");
+    const raw = await callAPI([{role:"user", content: evalPrompt}], "Sei un valutatore scolastico preciso. Rispondi SEMPRE e SOLO con JSON valido, nessun testo aggiuntivo.");
     const val = JSON.parse(raw.replace(/```json|```/g,"").trim());
     document.getElementById("result").textContent = "Voto: " + val.voto + "/10\n\nGiudizio: " + val.giudizio + "\n\nPunti di forza: " + val.punti_forza + "\n\nDa migliorare: " + val.da_migliorare;
     const entry = {nome, classe, voto: val.voto, giudizio: val.giudizio, punti_forza: val.punti_forza, da_migliorare: val.da_migliorare, ora: new Date().toLocaleTimeString("it-IT")};
