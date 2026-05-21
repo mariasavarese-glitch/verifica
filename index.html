@@ -210,10 +210,15 @@ async function finishTest() {
   const transcript = messages.map(m => m.role.toUpperCase() + ": " + m.content).join("\n\n");
   const evalPrompt = EVAL_INTRO + "\n\n" + EVAL_SCALE + "\n\nRispondi SOLO con un oggetto JSON valido, senza testo prima o dopo, nel formato esatto:\n{\"voto\":7,\"giudizio\":\"testo breve\",\"punti_forza\":\"testo\",\"da_migliorare\":\"testo\"}\n\nColloquio:\n" + transcript;
   try {
-    const raw = await callAPI([{role:"user", content: evalPrompt}], "Sei un valutatore scolastico preciso. Rispondi SEMPRE e SOLO con JSON valido, nessun testo aggiuntivo.");
-    const val = JSON.parse(raw.replace(/```json|```/g,"").trim());
-    document.getElementById("result").textContent = "Voto: " + val.voto + "/10\n\nGiudizio: " + val.giudizio + "\n\nPunti di forza: " + val.punti_forza + "\n\nDa migliorare: " + val.da_migliorare;
-    const entry = {nome, classe, voto: val.voto, giudizio: val.giudizio, punti_forza: val.punti_forza, da_migliorare: val.da_migliorare, ora: new Date().toLocaleTimeString("it-IT")};
+    const raw = await callAPI([{role:"user", content: evalPrompt}], "Sei un valutatore scolastico preciso. Rispondi SEMPRE e SOLO con un oggetto JSON valido senza nessun testo prima o dopo e senza backtick. Formato esatto: {\"voto\":7,\"giudizio\":\"testo\",\"punti_forza\":\"testo\",\"da_migliorare\":\"testo\"}");
+    let cleaned = raw.replace(/```json/g,"").replace(/```/g,"").trim();
+    // Estrai JSON anche se c'e testo intorno
+    const match = cleaned.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error("JSON non trovato nella risposta");
+    const val = JSON.parse(match[0]);
+    if (!val.voto || !val.giudizio) throw new Error("Campi JSON mancanti");
+    document.getElementById("result").textContent = "Voto: " + val.voto + "/10\n\nGiudizio: " + val.giudizio + "\n\nPunti di forza: " + (val.punti_forza||"-") + "\n\nDa migliorare: " + (val.da_migliorare||"-");
+    const entry = {nome, classe, voto: val.voto, giudizio: val.giudizio, punti_forza: val.punti_forza||"-", da_migliorare: val.da_migliorare||"-", ora: new Date().toLocaleTimeString("it-IT")};
     votiLocali.push(entry);
     const status = document.getElementById("saveStatus");
     try {
@@ -225,7 +230,7 @@ async function finishTest() {
       status.textContent = "Salvataggio Google Sheets non riuscito";
     }
   } catch(e) {
-    document.getElementById("result").textContent = "Errore nella valutazione: " + e.message;
+    document.getElementById("result").textContent = "Errore nella valutazione: " + e.message + "\nRiprova a cliccare Termina e consegna.";
   }
 }
 
