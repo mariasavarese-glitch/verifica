@@ -3,118 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verifica Educazione Civica — Agenda 2030</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<title>Verifica — Scienza degli Alimenti & Agenda 2030</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --verde:        #1a6b3c;
-  --verde2:       #2d9e5f;
-  --verde-pale:   #e8f5ee;
-  --blu:          #1565a8;
-  --oro:          #c9922a;
-  --testo:        #1a1a2e;
-  --grigio:       #6b7280;
-  --sfondo:       #f7f9f7;
-  --card:         #ffffff;
-  --ombra:        0 4px 28px rgba(26,107,60,.10);
-  --r:            16px;
+:root{
+  --v1:#2e7d32; --v2:#43a047; --v3:#c8e6c9; --v4:#f1f8e9;
+  --a:#e65100; --a2:#ff8f00;
+  --blu:#1565c0;
+  --t:#1b2631; --g:#607d8b; --g2:#eceff1;
+  --card:#fff;
+  --ombra:0 6px 32px rgba(46,125,50,.11);
+  --r:18px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Sans',sans-serif;background:var(--sfondo);color:var(--testo);min-height:100vh;}
+body{font-family:'Nunito',sans-serif;background:var(--g2);color:var(--t);min-height:100vh;}
 
-/* HEADER */
+/* ── HEADER ── */
 header{
-  background:linear-gradient(135deg,#0d4a2a 0%,var(--verde) 55%,#1254a0 100%);
-  color:#fff;padding:32px 20px 26px;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 50%,#1a237e 100%);
+  color:#fff;padding:30px 20px 24px;text-align:center;position:relative;overflow:hidden;
 }
-header::after{
+header::before{
   content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(255,255,255,.025) 30px,rgba(255,255,255,.025) 60px);
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.08) 0%,transparent 60%),
+             radial-gradient(ellipse at 20% 80%,rgba(255,143,0,.10) 0%,transparent 50%);
   pointer-events:none;
 }
-header h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5vw,2.1rem);font-weight:900;position:relative;}
-header p{margin-top:6px;font-size:.88rem;opacity:.78;font-weight:300;letter-spacing:.4px;position:relative;}
+header h1{font-family:'Lora',serif;font-size:clamp(1.3rem,4.5vw,2rem);font-weight:700;position:relative;line-height:1.25;}
+header p{margin-top:7px;font-size:.85rem;opacity:.78;font-weight:300;letter-spacing:.3px;position:relative;}
 .chips{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:14px;position:relative;}
-.chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:3px 11px;font-size:.72rem;font-weight:500;}
+.chip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:3px 11px;font-size:.7rem;font-weight:700;letter-spacing:.2px;}
 
-/* TABS */
-.tabs{display:flex;background:#fff;border-bottom:2px solid #e5e7eb;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06);}
-.tab{flex:1;padding:15px 8px;border:none;background:none;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;color:var(--grigio);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
-.tab.on{color:var(--verde);border-bottom-color:var(--verde);background:var(--verde-pale);}
-.tab:hover:not(.on){background:#f9fafb;color:var(--testo);}
+/* ── TABS ── */
+.tabs{display:flex;background:#fff;border-bottom:2px solid #dde;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.tab{flex:1;padding:14px 6px;border:none;background:none;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;color:var(--g);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px;}
+.tab.on{color:var(--v1);border-bottom-color:var(--v1);background:var(--v4);}
+.tab:hover:not(.on){background:#f5f5f5;}
 
-/* SEZIONI */
-.sez{display:none;padding:22px 16px;max-width:680px;margin:0 auto;animation:su .3s ease;}
+/* ── LAYOUT ── */
+.sez{display:none;padding:20px 15px;max-width:700px;margin:0 auto;animation:su .3s ease;}
 .sez.on{display:block;}
-@keyframes su{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* CARD */
-.card{background:var(--card);border-radius:var(--r);box-shadow:var(--ombra);padding:22px;margin-bottom:18px;border:1px solid rgba(26,107,60,.07);}
-.card h2{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--verde);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+/* ── CARD ── */
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--ombra);padding:22px;margin-bottom:18px;border:1px solid rgba(46,125,50,.07);}
+.card h2{font-family:'Lora',serif;font-size:1.1rem;color:var(--v1);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 
-/* FORM */
-label{display:block;font-size:.82rem;font-weight:600;color:var(--grigio);margin-bottom:4px;margin-top:13px;}
-input[type=text],textarea{width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;background:#fafafa;transition:border-color .2s,box-shadow .2s;color:var(--testo);}
-input[type=text]:focus,textarea:focus{outline:none;border-color:var(--verde2);box-shadow:0 0 0 3px rgba(45,158,95,.12);background:#fff;}
-textarea{resize:vertical;min-height:110px;}
+/* ── FORM ── */
+label{display:block;font-size:.8rem;font-weight:700;color:var(--g);margin-bottom:4px;margin-top:13px;text-transform:uppercase;letter-spacing:.4px;}
+input[type=text],textarea{width:100%;padding:11px 14px;border:1.5px solid #cfd8dc;border-radius:10px;font-family:'Nunito',sans-serif;font-size:.95rem;background:#fafafa;transition:border-color .2s,box-shadow .2s;color:var(--t);}
+input[type=text]:focus,textarea:focus{outline:none;border-color:var(--v2);box-shadow:0 0 0 3px rgba(67,160,71,.13);background:#fff;}
+textarea{resize:vertical;min-height:120px;}
 
-/* BTN */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 22px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:.93rem;font-weight:600;cursor:pointer;transition:all .2s;}
-.btn-v{background:var(--verde);color:#fff;}
-.btn-v:hover:not(:disabled){background:var(--verde2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,107,60,.28);}
-.btn-v:disabled{background:#9ca3af;cursor:not-allowed;}
-.btn-o{background:#fff;color:var(--verde);border:2px solid var(--verde);}
-.btn-o:hover{background:var(--verde-pale);}
-.btn-oro{background:var(--oro);color:#fff;}
-.btn-oro:hover{background:#b07820;transform:translateY(-1px);}
-.btn-r{background:#dc2626;color:#fff;}
-.btn-r:hover{background:#b91c1c;}
+/* ── BTN ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 22px;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;transition:all .2s;}
+.btn-v{background:var(--v1);color:#fff;}
+.btn-v:hover:not(:disabled){background:var(--v2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(46,125,50,.3);}
+.btn-v:disabled{background:#b0bec5;cursor:not-allowed;transform:none;}
+.btn-o{background:#fff;color:var(--v1);border:2px solid var(--v1);}
+.btn-o:hover{background:var(--v4);}
+.btn-oro{background:var(--a2);color:#fff;}
+.btn-oro:hover{background:var(--a);}
+.btn-r{background:#c62828;color:#fff;}
+.btn-r:hover{background:#b71c1c;}
 .w100{width:100%;margin-top:10px;}
-
-/* DOMANDA */
-.qbox{background:var(--verde-pale);border-left:4px solid var(--verde);border-radius:10px;padding:15px 17px;margin-bottom:14px;font-size:.97rem;line-height:1.65;font-weight:500;}
-.top-q{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--grigio);margin-bottom:8px;}
-.badge{background:var(--verde);color:#fff;border-radius:20px;padding:2px 10px;font-size:.72rem;font-weight:600;}
-.bar{height:5px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin-bottom:16px;}
-.fill{height:100%;background:linear-gradient(90deg,var(--verde),var(--verde2));border-radius:99px;transition:width .5s ease;}
-.hint{font-size:.78rem;color:var(--grigio);margin-top:10px;}
 .row-btn{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
 
-/* VOTO */
-.voto-big{font-family:'Playfair Display',serif;font-size:5.5rem;font-weight:900;text-align:center;line-height:1;}
-.voto-sub{text-align:center;font-size:.82rem;color:var(--grigio);margin-bottom:18px;}
-.verde{color:var(--verde)}.oro{color:var(--oro)}.rosso{color:#dc2626;}
-.commento-box{background:#f8f9fa;border-radius:12px;padding:18px;font-size:.93rem;line-height:1.72;border:1px solid #e5e7eb;}
-.commento-box p{margin-bottom:8px;}
+/* ── TAG MODULO ── */
+.mod-tag{display:inline-block;font-size:.68rem;font-weight:800;padding:2px 9px;border-radius:6px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px;}
+.mod1{background:#e3f2fd;color:#0d47a1;}
+.mod2{background:#fff3e0;color:#bf360c;}
+.mod3{background:#fce4ec;color:#880e4f;}
+
+/* ── SDG TAG ── */
+.sdg-tag{display:inline-flex;align-items:center;gap:5px;background:var(--v3);color:var(--v1);border-radius:8px;padding:4px 10px;font-size:.72rem;font-weight:800;margin-bottom:10px;}
+
+/* ── DOMANDA ── */
+.qbox{background:var(--v4);border-left:4px solid var(--v1);border-radius:10px;padding:15px 17px;margin-bottom:14px;font-size:.96rem;line-height:1.68;font-weight:600;}
+.top-q{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.num-q{font-size:.78rem;font-weight:700;color:var(--g);}
+.bar{height:6px;background:#cfd8dc;border-radius:99px;overflow:hidden;margin-bottom:16px;}
+.fill{height:100%;background:linear-gradient(90deg,var(--v1),var(--v2),var(--a2));border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.hint{font-size:.77rem;color:var(--g);margin-top:10px;font-style:italic;}
+
+/* ── VOTO ── */
+.voto-big{font-family:'Lora',serif;font-size:5.5rem;font-weight:700;text-align:center;line-height:1;}
+.voto-sub{text-align:center;font-size:.8rem;color:var(--g);margin-bottom:20px;}
+.verde{color:var(--v1)}.oro{color:var(--a2)}.rosso{color:#c62828;}
+.commento-box{background:#f5f7f5;border-radius:12px;padding:18px;font-size:.92rem;line-height:1.75;border:1px solid #dde;}
+.commento-box strong{color:var(--v1);}
+.commento-box p{margin-bottom:10px;}
 .commento-box p:last-child{margin-bottom:0;}
 
-/* STATISTICHE DOCENTE */
+/* ── DETTAGLIO MODULI ── */
+.moduli-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+.mod-stat{border-radius:12px;padding:14px 10px;text-align:center;}
+.mod-stat .mn{font-family:'Lora',serif;font-size:2rem;font-weight:700;line-height:1;}
+.mod-stat .ml{font-size:.72rem;font-weight:700;margin-top:3px;text-transform:uppercase;letter-spacing:.3px;}
+.ms1{background:#e3f2fd;}.ms1 .mn{color:#0d47a1;}
+.ms2{background:#fff3e0;}.ms2 .mn{color:#bf360c;}
+.ms3{background:#fce4ec;}.ms3 .mn{color:#880e4f;}
+
+/* ── DOCENTE ── */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
-.statcard{background:var(--verde-pale);border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(26,107,60,.10);}
-.statnum{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--verde);line-height:1;}
-.statlbl{font-size:.76rem;color:var(--grigio);margin-top:4px;font-weight:500;}
+.statcard{background:var(--v4);border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(46,125,50,.10);}
+.statnum{font-family:'Lora',serif;font-size:2.2rem;font-weight:700;color:var(--v1);line-height:1;}
+.statlbl{font-size:.74rem;color:var(--g);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+.ritem{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-radius:10px;background:#f9fafb;border:1px solid #eceff1;margin-bottom:7px;transition:background .15s;}
+.ritem:hover{background:var(--v4);}
+.rnome{font-weight:700;font-size:.93rem;}
+.rclasse{font-size:.78rem;color:var(--g);}
+.rvoto{font-family:'Lora',serif;font-size:1.6rem;font-weight:700;}
+.rdata{font-size:.72rem;color:var(--g);text-align:right;}
+.vuoto{text-align:center;color:var(--g);padding:38px 20px;font-size:.92rem;}
 
-/* REGISTRO */
-.ritem{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-radius:10px;background:#f9fafb;border:1px solid #f0f0f0;margin-bottom:7px;transition:background .15s;}
-.ritem:hover{background:var(--verde-pale);}
-.rnome{font-weight:600;font-size:.94rem;}
-.rclasse{font-size:.79rem;color:var(--grigio);}
-.rvoto{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
-.rdata{font-size:.73rem;color:var(--grigio);text-align:right;}
-.vuoto{text-align:center;color:var(--grigio);padding:38px 20px;font-size:.93rem;}
-
-footer{text-align:center;padding:22px 16px;font-size:.76rem;color:#9ca3af;border-top:1px solid #f0f0f0;margin-top:10px;}
+footer{text-align:center;padding:22px 16px;font-size:.74rem;color:#90a4ae;border-top:1px solid #eceff1;margin-top:10px;}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🌍 Verifica Educazione Civica</h1>
-  <p>Agenda 2030 — Obiettivi di Sviluppo Sostenibile</p>
+  <h1>🌱 Scienza degli Alimenti & Agenda 2030</h1>
+  <p>Verifica interdisciplinare — Collegamento tra argomenti disciplinari e SDGs</p>
   <div class="chips">
-    <span class="chip">🎯 17 Obiettivi</span>
-    <span class="chip">📅 Agenda 2030</span>
-    <span class="chip">✅ Gratuito</span>
+    <span class="chip">🥗 Modulo 1 · Alimenti & Nutrienti</span>
+    <span class="chip">🏷 Modulo 2 · Filiera Agroalimentare</span>
+    <span class="chip">🦠 Modulo 3 · Sicurezza Alimentare</span>
   </div>
 </header>
 
@@ -123,14 +137,14 @@ footer{text-align:center;padding:22px 16px;font-size:.76rem;color:#9ca3af;border
   <button class="tab" onclick="tab('docente',this)">🎓 Docente</button>
 </div>
 
-<!-- ===== STUDENTE ===== -->
+<!-- ═══════════════ STUDENTE ═══════════════ -->
 <div id="sez-studente" class="sez on">
 
   <!-- LOGIN -->
   <div id="fase-login" class="card">
     <h2>✏️ Inizia la verifica</h2>
     <label>Nome e cognome</label>
-    <input type="text" id="inp-nome" placeholder="Es. Mario Rossi">
+    <input type="text" id="inp-nome" placeholder="Es. Maria Rossi">
     <label>Classe</label>
     <input type="text" id="inp-classe" placeholder="Es. 3A">
     <button class="btn btn-v w100" onclick="inizia()">▶ Inizia verifica</button>
@@ -140,13 +154,16 @@ footer{text-align:center;padding:22px 16px;font-size:.76rem;color:#9ca3af;border
   <div id="fase-domande" style="display:none">
     <div class="card">
       <div class="top-q">
-        <span id="lbl-num">Domanda 1 di 15</span>
-        <span class="badge" id="lbl-sdg">SDG</span>
+        <span class="num-q" id="lbl-num">Domanda 1 di 15</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+          <span class="mod-tag" id="lbl-mod">Modulo 1</span>
+          <span class="sdg-tag" id="lbl-sdg">🎯 SDG</span>
+        </div>
       </div>
       <div class="bar"><div class="fill" id="barra" style="width:0%"></div></div>
       <div class="qbox" id="testo-q">…</div>
-      <textarea id="inp-risp" placeholder="Scrivi qui la tua risposta…" rows="5"></textarea>
-      <p class="hint" id="hint-cons">Il pulsante di consegna si attiva dopo almeno 10 risposte.</p>
+      <textarea id="inp-risp" placeholder="Scrivi qui la tua risposta, collegando i contenuti disciplinari agli obiettivi dell'Agenda 2030…" rows="6"></textarea>
+      <p class="hint" id="hint-cons">💡 Il pulsante di consegna si attiva dopo almeno 10 risposte.</p>
       <div class="row-btn">
         <button class="btn btn-v" onclick="invia()">➤ Invia risposta</button>
         <button class="btn btn-o" id="btn-cons" onclick="consegna()" disabled>📋 Termina e consegna</button>
@@ -160,6 +177,11 @@ footer{text-align:center;padding:22px 16px;font-size:.76rem;color:#9ca3af;border
       <h2 style="justify-content:center">🏆 La tua valutazione</h2>
       <div class="voto-big" id="voto-disp">—</div>
       <div class="voto-sub">su 10</div>
+      <div class="moduli-grid">
+        <div class="mod-stat ms1"><div class="mn" id="vm1">—</div><div class="ml">Modulo 1</div></div>
+        <div class="mod-stat ms2"><div class="mn" id="vm2">—</div><div class="ml">Modulo 2</div></div>
+        <div class="mod-stat ms3"><div class="mn" id="vm3">—</div><div class="ml">Modulo 3</div></div>
+      </div>
       <div class="commento-box" id="commento-disp"></div>
       <button class="btn btn-o w100" style="margin-top:16px" onclick="nuova()">🔄 Nuova verifica</button>
     </div>
@@ -167,7 +189,7 @@ footer{text-align:center;padding:22px 16px;font-size:.76rem;color:#9ca3af;border
 
 </div>
 
-<!-- ===== DOCENTE ===== -->
+<!-- ═══════════════ DOCENTE ═══════════════ -->
 <div id="sez-docente" class="sez">
 
   <div class="grid2">
@@ -183,56 +205,125 @@ footer{text-align:center;padding:22px 16px;font-size:.76rem;color:#9ca3af;border
     <button class="btn btn-oro w100" id="btn-csv" onclick="esportaCSV()" disabled style="margin-top:8px">⬇ Esporta CSV</button>
   </div>
 
-  <div class="card" style="background:#fef2f2;border-color:#fca5a5">
-    <h2 style="color:#991b1b">🗑 Gestione dati</h2>
-    <p style="font-size:.85rem;color:#7f1d1d;margin-bottom:12px">Cancella tutte le valutazioni salvate nel browser.</p>
+  <div class="card" style="background:#fff8f8;border-color:#ffcdd2">
+    <h2 style="color:#b71c1c">🗑 Gestione dati</h2>
+    <p style="font-size:.84rem;color:#7f1d1d;margin-bottom:12px">Cancella tutte le valutazioni salvate nel browser.</p>
     <button class="btn btn-r" onclick="cancella()">Cancella registro</button>
   </div>
 
 </div>
 
-<footer>Verifica Educazione Civica · Agenda 2030 · Valutazione automatica gratuita<br>I dati sono salvati solo localmente nel tuo browser.</footer>
+<footer>Scienza degli Alimenti · Agenda 2030 · Valutazione automatica gratuita · I dati sono salvati solo localmente nel tuo browser.</footer>
 
 <script>
-// ── DOMANDE ──────────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════
+//  DOMANDE — collegamento disciplina ↔ SDG
+// ══════════════════════════════════════════════════════════════════
 const DOMANDE = [
-  { t:"Cos'è l'Agenda 2030 e quando è stata adottata dall'ONU?", s:"SDG Generale",
-    kw:["2015","settembre","onu","nazioni unite","obiettivi","sviluppo sostenibile","2030","193"] },
-  { t:"Quanti sono gli Obiettivi di Sviluppo Sostenibile (SDGs) e come sono strutturati?", s:"SDG Generale",
-    kw:["17","diciassette","169","target","sotto-obiettivi","goal","indicatori"] },
-  { t:"Descrivi il primo obiettivo dell'Agenda 2030: cosa significa 'sconfiggere la povertà'?", s:"SDG 1",
-    kw:["povertà","estrema","1,90","dollari","reddito","disuguaglianza","protezione sociale","accesso"] },
-  { t:"Cosa prevede l'SDG 2 riguardo alla fame nel mondo? Cita almeno due azioni concrete.", s:"SDG 2",
-    kw:["fame","malnutrizione","agricoltura","sostenibile","sicurezza alimentare","cibo","produzione"] },
-  { t:"In cosa consiste l'SDG 4 sull'istruzione di qualità? Perché è fondamentale per lo sviluppo?", s:"SDG 4",
-    kw:["istruzione","scuola","educazione","alfabetizzazione","formazione","accesso","qualità","inclusiva"] },
-  { t:"L'SDG 5 riguarda la parità di genere. Quali sono le principali disuguaglianze che vuole eliminare?", s:"SDG 5",
-    kw:["genere","donne","discriminazione","violenza","parità","femminile","diritti","lavoro"] },
-  { t:"Spiega l'SDG 6 sull'acqua pulita: perché l'accesso all'acqua è considerato un diritto umano?", s:"SDG 6",
-    kw:["acqua","potabile","igiene","sanificazione","diritto","accesso","pulita","scarsa"] },
-  { t:"Cosa si intende per 'energia pulita e accessibile' (SDG 7)? Fai esempi di fonti rinnovabili.", s:"SDG 7",
-    kw:["energia","rinnovabile","solare","eolica","idroelettrica","fossile","accesso","pulita"] },
-  { t:"L'SDG 13 riguarda la lotta ai cambiamenti climatici. Qual è la differenza tra mitigazione e adattamento?", s:"SDG 13",
-    kw:["clima","cambiamenti climatici","mitigazione","adattamento","emissioni","co2","temperatura","paris"] },
-  { t:"Cosa significa 'consumo e produzione responsabili' (SDG 12)? Cosa puoi fare tu nella vita quotidiana?", s:"SDG 12",
-    kw:["consumo","produzione","spreco","riciclo","sostenibile","rifiuti","responsabile","acquisto"] },
-  { t:"L'SDG 10 parla di riduzione delle disuguaglianze. Quali sono le principali cause delle disuguaglianze economiche globali?", s:"SDG 10",
-    kw:["disuguaglianza","reddito","ricchezza","nord","sud","globalizzazione","accesso","opportunità"] },
-  { t:"Descrivi l'SDG 14 relativo alla vita sott'acqua. Quali sono le principali minacce agli ecosistemi marini?", s:"SDG 14",
-    kw:["mare","oceano","plastica","pesca","coralli","inquinamento","biodiversità","acidificazione"] },
-  { t:"Cosa si intende per 'città sostenibili' nell'SDG 11? Fai un esempio di città che ha adottato politiche sostenibili.", s:"SDG 11",
-    kw:["città","urbano","trasporti","verde","sostenibile","abitazione","mobilità","inquinamento"] },
-  { t:"L'SDG 17 parla di 'partnership per gli obiettivi'. Perché la cooperazione internazionale è essenziale per l'Agenda 2030?", s:"SDG 17",
-    kw:["cooperazione","partnership","internazionale","finanziamento","paesi","accordo","collaborazione"] },
-  { t:"Secondo te, quale SDG è più urgente da raggiungere entro il 2030 e perché? Argomenta la tua risposta.", s:"Riflessione critica",
-    kw:["perché","ritengo","credo","importante","urgente","obiettivo","problema","soluzione","futuro"] }
+  // ── MODULO 1 ──
+  {
+    modulo: 1,
+    sdg: "SDG 2 · Fame Zero",
+    t: "Partendo dalla classificazione degli alimenti nei 5 gruppi, spiega in che modo una dieta equilibrata contribuisce all'obiettivo SDG 2 (Fame Zero) dell'Agenda 2030.",
+    kw: ["gruppi","classificazione","dieta","equilibrata","fame","nutrienti","sdg 2","sostenibile","malnutrizione","cereali","proteine","frutta","verdura","latticini"]
+  },
+  {
+    modulo: 1,
+    sdg: "SDG 3 · Salute e Benessere",
+    t: "I disturbi del comportamento alimentare (DCA) rappresentano un grave problema di salute pubblica. Collegali all'SDG 3 (Salute e Benessere): quali azioni prevede l'Agenda 2030 per promuovere la salute mentale e fisica?",
+    kw: ["dca","anoressia","bulimia","salute","benessere","sdg 3","mentale","fisica","prevenzione","sensibilizzazione","cura","disturbi","alimentare","psicologica"]
+  },
+  {
+    modulo: 1,
+    sdg: "SDG 2 · SDG 15 · Ecosistemi",
+    t: "La fotosintesi clorofilliana è alla base della catena alimentare. In che modo la tutela degli ecosistemi vegetali (SDG 15) e la produzione alimentare sostenibile (SDG 2) sono collegate alla fotosintesi e agli organismi autotrofi?",
+    kw: ["fotosintesi","autotrofi","eterotrofi","ecosistema","sdg 15","sdg 2","piante","vegetali","catena alimentare","biodiversità","produzione","sostenibile","clorofilla"]
+  },
+  {
+    modulo: 1,
+    sdg: "SDG 2 · SDG 12 · Consumo Responsabile",
+    t: "I glucidi sono i principali nutrienti energetici. Spiega la differenza tra glucidi semplici e complessi e collega le loro fonti alimentari all'SDG 12 (Consumo e Produzione Responsabili): quali scelte alimentari sono più sostenibili?",
+    kw: ["glucidi","zuccheri","amido","semplici","complessi","fonti","cereali","sostenibile","sdg 12","consumo","produzione","responsabile","integrale","raffinato","energia"]
+  },
+  {
+    modulo: 1,
+    sdg: "SDG 3 · SDG 10 · Disuguaglianze",
+    t: "Spiega la differenza tra alimentazione e nutrizione. In che modo le disuguaglianze economiche (SDG 10) influenzano l'accesso a una nutrizione adeguata nel mondo e cosa prevede l'SDG 3 per garantire la salute a tutti?",
+    kw: ["alimentazione","nutrizione","disuguaglianza","sdg 10","accesso","sdg 3","salute","povertà","reddito","cibo","adeguata","equità","globale","differenza"]
+  },
+
+  // ── MODULO 2 ──
+  {
+    modulo: 2,
+    sdg: "SDG 12 · Consumo Responsabile",
+    t: "L'etichetta alimentare è uno strumento fondamentale per il consumatore consapevole. Elenca almeno 3 elementi obbligatori dell'etichetta e spiega come leggere correttamente un'etichetta aiuta a fare scelte in linea con l'SDG 12 (Consumo e Produzione Responsabili).",
+    kw: ["etichetta","obbligatori","ingredienti","scadenza","valori nutrizionali","sdg 12","consumatore","consapevole","informazione","trasparenza","produttore","denominazione","peso","allergeni"]
+  },
+  {
+    modulo: 2,
+    sdg: "SDG 3 · Salute e Benessere",
+    t: "Gli allergeni alimentari devono essere sempre indicati in etichetta. Perché questa informazione è cruciale per la salute pubblica (SDG 3)? Cita almeno 4 degli allergeni principali riconosciuti dalla normativa europea.",
+    kw: ["allergeni","etichetta","sdg 3","salute","glutine","latte","uova","arachidi","soia","frutta a guscio","celiachia","allergia","intolleranza","normativa","europea"]
+  },
+  {
+    modulo: 2,
+    sdg: "SDG 12 · SDG 14 · SDG 15",
+    t: "Cosa si intende per MOCA (Materiali e Oggetti a Contatto con gli Alimenti)? Collegati agli SDG 12, 14 e 15: in che modo la scelta dei materiali di imballaggio ha un impatto sulla salute umana e sull'ambiente?",
+    kw: ["moca","materiali","contatto","alimenti","imballaggio","plastica","sdg 12","sdg 14","sdg 15","ambiente","inquinamento","migrazioni","sicurezza","bpa","riciclabile"]
+  },
+  {
+    modulo: 2,
+    sdg: "SDG 12 · SDG 13 · Rifiuti e Clima",
+    t: "Spiega le 4R per la gestione dei rifiuti (Ridurre, Riutilizzare, Riciclare, Recuperare) e collegale all'SDG 12 (Consumo Responsabile) e all'SDG 13 (Lotta ai Cambiamenti Climatici). Come la corretta raccolta differenziata degli imballaggi alimentari contribuisce alla sostenibilità?",
+    kw: ["4r","ridurre","riutilizzare","riciclare","recuperare","raccolta differenziata","sdg 12","sdg 13","rifiuti","imballaggi","clima","emissioni","circolare","economia","sostenibilità"]
+  },
+
+  // ── MODULO 3 ──
+  {
+    modulo: 3,
+    sdg: "SDG 3 · SDG 15 · Ecosistemi e Salute",
+    t: "La contaminazione chimica degli alimenti può derivare da pesticidi, metalli pesanti o inquinanti industriali. Collega questo rischio all'SDG 3 (Salute) e all'SDG 15 (Vita sulla Terra): come la protezione degli ecosistemi riduce i rischi di contaminazione chimica nella filiera alimentare?",
+    kw: ["contaminazione","chimica","pesticidi","metalli pesanti","sdg 3","sdg 15","ecosistema","inquinamento","filiera","suolo","acqua","salute","tossici","prevenzione"]
+  },
+  {
+    modulo: 3,
+    sdg: "SDG 3 · SDG 16 · Istituzioni",
+    t: "Gli incidenti nucleari di Chernobyl e Fukushima hanno causato una grave contaminazione radioattiva degli alimenti. Collega questi eventi all'SDG 3 (Salute) e all'SDG 16 (Istituzioni forti): quali controlli istituzionali sono necessari per proteggere la sicurezza alimentare dopo una catastrofe nucleare?",
+    kw: ["chernobyl","fukushima","nucleare","radioattività","sdg 3","sdg 16","istituzioni","controllo","monitoraggio","contaminazione","cesio","stronzio","sicurezza","autorità","normativa"]
+  },
+  {
+    modulo: 3,
+    sdg: "SDG 3 · SDG 6 · Acqua Pulita",
+    t: "La contaminazione biologica degli alimenti (diretta, indiretta e crociata) è spesso legata all'igiene dell'acqua e delle superfici. Spiega i tre tipi di contaminazione e collegali all'SDG 3 (Salute) e all'SDG 6 (Acqua Pulita): perché l'accesso ad acqua sicura è fondamentale per la sicurezza alimentare?",
+    kw: ["contaminazione","biologica","diretta","indiretta","crociata","acqua","sdg 3","sdg 6","igiene","salmonella","batteri","superfici","mani","pulizia","sicurezza"]
+  },
+  {
+    modulo: 3,
+    sdg: "SDG 3 · SDG 2 · Sicurezza Alimentare",
+    t: "Definisci infezione, tossinfezione, intossicazione e parassitosi alimentare. Porta un esempio per ciascuna (es. Salmonella, Botulino, Epatite A, Anisakis) e spiega perché combattere queste malattie è un obiettivo dell'SDG 3 e dell'SDG 2.",
+    kw: ["infezione","tossinfezione","intossicazione","parassitosi","salmonella","botulino","epatite","anisakis","sdg 3","sdg 2","malattia","alimentare","batterio","tossina","parassita"]
+  },
+  {
+    modulo: 3,
+    sdg: "SDG 3 · SDG 12 · Produzione Sicura",
+    t: "I 5 punti chiave dell'OMS per la sicurezza alimentare sono strumenti pratici per prevenire malattie. Elencali e collegali all'SDG 3 (Salute) e all'SDG 12 (Consumo e Produzione Responsabili): come si traducono in comportamenti quotidiani nella cucina professionale?",
+    kw: ["oms","5 punti","sicurezza","cottura","temperatura","separare","pulire","acqua sicura","sdg 3","sdg 12","igiene","professionale","cucina","prevenzione","manipolazione"]
+  },
+  {
+    modulo: 3,
+    sdg: "SDG 3 · SDG 12 · HACCP",
+    t: "Il sistema HACCP garantisce la sicurezza nella filiera alimentare. Spiega come le procedure corrette di manipolazione, cottura e conservazione della carne (inclusa la conservazione in frigo) si collegano all'SDG 3 e all'SDG 12. Perché ridurre gli sprechi alimentari è anche un obiettivo di sicurezza?",
+    kw: ["haccp","carne","cottura","manipolazione","conservazione","frigo","temperatura","sdg 3","sdg 12","spreco","filiera","sicuro","refrigerazione","catena del freddo","igiene"]
+  }
 ];
 
-// ── STATO ────────────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════
+//  STATO
+// ══════════════════════════════════════════════════════════════════
 let S = { nome:'', classe:'', idx:0, risposte:[] };
 
-// ── TABS ─────────────────────────────────────────────────────────────────────
-function tab(id, btn) {
+// ── TABS ──
+function tab(id, btn){
   document.querySelectorAll('.sez').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('sez-'+id).classList.add('on');
@@ -240,129 +331,151 @@ function tab(id, btn) {
   if(id==='docente') aggiornaDocente();
 }
 
-// ── VERIFICA ─────────────────────────────────────────────────────────────────
-function inizia() {
-  const nome = document.getElementById('inp-nome').value.trim();
-  const cls  = document.getElementById('inp-classe').value.trim();
-  if(!nome||!cls){ alert('Inserisci nome e classe!'); return; }
-  S = { nome, classe:cls, idx:0, risposte:[] };
+// ── VERIFICA ──
+function inizia(){
+  const nome=document.getElementById('inp-nome').value.trim();
+  const cls=document.getElementById('inp-classe').value.trim();
+  if(!nome||!cls){alert('Inserisci nome e classe!');return;}
+  S={nome,classe:cls,idx:0,risposte:[]};
   document.getElementById('fase-login').style.display='none';
   document.getElementById('fase-domande').style.display='block';
   mostraDomanda();
 }
 
-function mostraDomanda() {
-  const d = DOMANDE[S.idx];
-  document.getElementById('lbl-num').textContent = `Domanda ${S.idx+1} di ${DOMANDE.length}`;
-  document.getElementById('lbl-sdg').textContent = d.s;
-  document.getElementById('testo-q').textContent = d.t;
-  document.getElementById('inp-risp').value = '';
-  document.getElementById('barra').style.width = (S.idx/DOMANDE.length*100)+'%';
-  const n = S.risposte.length;
-  document.getElementById('btn-cons').disabled = n<10;
-  document.getElementById('hint-cons').textContent = n<10
-    ? `Il pulsante di consegna si attiva dopo almeno 10 risposte. (${n}/10)`
-    : '✅ Puoi consegnare quando vuoi oppure continuare.';
+function mostraDomanda(){
+  const d=DOMANDE[S.idx];
+  document.getElementById('lbl-num').textContent=`Domanda ${S.idx+1} di ${DOMANDE.length}`;
+  const modTag=document.getElementById('lbl-mod');
+  modTag.textContent='Modulo '+d.modulo;
+  modTag.className='mod-tag mod'+d.modulo;
+  document.getElementById('lbl-sdg').textContent='🎯 '+d.sdg;
+  document.getElementById('testo-q').textContent=d.t;
+  document.getElementById('inp-risp').value='';
+  document.getElementById('barra').style.width=(S.idx/DOMANDE.length*100)+'%';
+  const n=S.risposte.length;
+  document.getElementById('btn-cons').disabled=n<10;
+  document.getElementById('hint-cons').textContent=n<10
+    ?`💡 Il pulsante di consegna si attiva dopo almeno 10 risposte. (${n}/10)`
+    :'✅ Puoi consegnare quando vuoi oppure continuare con le domande restanti.';
 }
 
-function invia() {
-  const r = document.getElementById('inp-risp').value.trim();
-  if(!r){ alert('Scrivi una risposta prima di procedere!'); return; }
-  S.risposte.push({ domanda: DOMANDE[S.idx].t, kw: DOMANDE[S.idx].kw, risposta: r });
-  if(S.idx < DOMANDE.length-1){ S.idx++; mostraDomanda(); }
+function invia(){
+  const r=document.getElementById('inp-risp').value.trim();
+  if(!r){alert('Scrivi una risposta prima di procedere!');return;}
+  S.risposte.push({modulo:DOMANDE[S.idx].modulo,kw:DOMANDE[S.idx].kw,risposta:r});
+  if(S.idx<DOMANDE.length-1){S.idx++;mostraDomanda();}
   else consegna();
 }
 
-// ── VALUTAZIONE AUTOMATICA ────────────────────────────────────────────────────
-function valuta(risposte) {
-  let puntiTot = 0;
-  const dettagli = [];
+// ══════════════════════════════════════════════════════════════════
+//  VALUTAZIONE AUTOMATICA
+// ══════════════════════════════════════════════════════════════════
+function punteggioRisposta(r){
+  const t=r.risposta.toLowerCase();
+  const parole=t.split(/\s+/).filter(p=>p.length>2).length;
 
-  risposte.forEach(r => {
-    const testo = r.risposta.toLowerCase();
-    const parole = testo.split(/\s+/).length;
+  // 1. Lunghezza (max 3)
+  const lung = parole>=70?3:parole>=40?2:parole>=18?1:0;
 
-    // 1. Lunghezza (max 3 punti)
-    let lung = parole >= 60 ? 3 : parole >= 35 ? 2 : parole >= 15 ? 1 : 0;
+  // 2. Parole chiave disciplinari (max 4)
+  const trovate=r.kw.filter(k=>t.includes(k.toLowerCase())).length;
+  const kw = trovate>=5?4:trovate>=3?3:trovate>=2?2:trovate===1?1:0;
 
-    // 2. Parole chiave (max 4 punti)
-    const trovate = r.kw.filter(k => testo.includes(k.toLowerCase())).length;
-    let kw = trovate >= 4 ? 4 : trovate >= 2 ? 3 : trovate === 1 ? 1.5 : 0;
+  // 3. Collegamento esplicito a SDG (max 2)
+  const sdgRef=['sdg','agenda 2030','obiettivo','sostenibile','sostenibilità','onu','sviluppo sostenibile'];
+  const sdgTrov=sdgRef.filter(s=>t.includes(s)).length;
+  const sdg = sdgTrov>=3?2:sdgTrov>=1?1:0;
 
-    // 3. Articolazione (presenza di connettivi, max 3 punti)
-    const conn = ['perché','quindi','inoltre','tuttavia','infatti','poiché','mentre','invece','dunque','pertanto','ad esempio','come','anche','soprattutto'];
-    const connTrovati = conn.filter(c=>testo.includes(c)).length;
-    let art = connTrovati >= 4 ? 3 : connTrovati >= 2 ? 2 : connTrovati >= 1 ? 1 : 0;
+  // 4. Articolazione logica (max 1)
+  const conn=['perché','quindi','infatti','inoltre','tuttavia','poiché','dunque','pertanto','ad esempio','in quanto','di conseguenza','mentre','invece'];
+  const art = conn.filter(c=>t.includes(c)).length>=2?1:0;
 
-    const punteggio = lung + kw + art; // max 10
-    puntiTot += punteggio;
-    dettagli.push(punteggio);
-  });
-
-  const media = puntiTot / risposte.length;
-  const voto = Math.min(10, Math.max(1, Math.round(media)));
-  return { voto, media: media.toFixed(1) };
+  return lung+kw+sdg+art; // max 10
 }
 
-function consegna() {
+function consegna(){
   document.getElementById('fase-domande').style.display='none';
   document.getElementById('fase-val').style.display='block';
 
-  const { voto, media } = valuta(S.risposte);
-  const el = document.getElementById('voto-disp');
-  el.textContent = voto;
-  el.className = 'voto-big ' + (voto>=7?'verde':voto>=5?'oro':'rosso');
+  // Punteggio per modulo
+  const byMod={1:[],2:[],3:[]};
+  S.risposte.forEach(r=>{
+    const p=punteggioRisposta(r);
+    byMod[r.modulo].push(p);
+  });
 
-  // Commento personalizzato
-  let testo = '';
+  const media=m=>{
+    if(!m.length)return null;
+    return m.reduce((a,b)=>a+b,0)/m.length;
+  };
+
+  const med1=media(byMod[1]), med2=media(byMod[2]), med3=media(byMod[3]);
+  const tuttiPunti=S.risposte.map(r=>punteggioRisposta(r));
+  const mediaGlob=tuttiPunti.reduce((a,b)=>a+b,0)/tuttiPunti.length;
+  const voto=Math.min(10,Math.max(1,Math.round(mediaGlob)));
+
+  // Display voto
+  const el=document.getElementById('voto-disp');
+  el.textContent=voto;
+  el.className='voto-big '+(voto>=7?'verde':voto>=5?'oro':'rosso');
+
+  // Display per modulo
+  const fmt=v=>v===null?'—':v.toFixed(1);
+  document.getElementById('vm1').textContent=med1===null?'—':Math.round(med1);
+  document.getElementById('vm2').textContent=med2===null?'—':Math.round(med2);
+  document.getElementById('vm3').textContent=med3===null?'—':Math.round(med3);
+
+  // Commento
+  let testo='';
+  const nome=S.nome.split(' ')[0];
   if(voto>=9){
-    testo = `<p><strong>Eccellente!</strong> ${S.nome} ha dimostrato una conoscenza approfondita e articolata dell'Agenda 2030. Le risposte sono complete, ricche di termini specifici e ben argomentate.</p><p>Continua così: sei sulla strada giusta per diventare un cittadino consapevole e impegnato!</p>`;
-  } else if(voto>=7){
-    testo = `<p><strong>Bravo!</strong> ${S.nome} conosce bene gli Obiettivi di Sviluppo Sostenibile e sa spiegarli in modo chiaro. Alcune risposte potrebbero essere ampliate con esempi più concreti.</p><p>Un piccolo sforzo in più nella fase di revisione porterà a risultati eccellenti.</p>`;
-  } else if(voto>=6){
-    testo = `<p><strong>Sufficiente.</strong> ${S.nome} dimostra una conoscenza di base dell'Agenda 2030, ma alcune risposte risultano incomplete o poco approfondite.</p><p>Si consiglia di ripassare gli SDG principali e di arricchire le risposte con dati e connettivi logici.</p>`;
-  } else if(voto>=5){
-    testo = `<p><strong>Quasi sufficiente.</strong> ${S.nome} mostra una conoscenza parziale degli argomenti. Le risposte sono spesso brevi e mancano di termini specifici dell'Agenda 2030.</p><p>È necessario ripassare i principali Obiettivi e allenarsi a scrivere risposte più articolate.</p>`;
-  } else {
-    testo = `<p><strong>Insufficiente.</strong> ${S.nome} ha difficoltà a esporre i contenuti dell'Agenda 2030. Le risposte sono molto brevi e prive dei concetti fondamentali.</p><p>Si consiglia un ripasso completo degli SDG e una maggiore attenzione durante lo studio.</p>`;
+    testo=`<p><strong>Eccellente!</strong> ${nome} dimostra una padronanza ottima degli argomenti di Scienza degli Alimenti e sa collegarli con precisione agli Obiettivi di Sviluppo Sostenibile dell'Agenda 2030.</p><p>Le risposte sono complete, ben articolate e ricche di termini tecnici specifici della disciplina. Il collegamento interdisciplinare è chiaro e approfondito.</p>`;
+  }else if(voto>=7){
+    testo=`<p><strong>Buono!</strong> ${nome} conosce bene i contenuti disciplinari e riesce a collegarli agli SDG in modo corretto. Le risposte sono abbastanza complete e pertinenti.</p><p>Per eccellere, si suggerisce di arricchire ulteriormente i collegamenti agli SDG specifici e di usare più termini tecnici della disciplina.</p>`;
+  }else if(voto>=6){
+    testo=`<p><strong>Sufficiente.</strong> ${nome} mostra una conoscenza di base degli argomenti, ma i collegamenti all'Agenda 2030 risultano a volte superficiali o non esplicitati chiaramente.</p><p>Si consiglia di ripassare i 17 SDG e di esercitarsi a mettere in relazione ogni argomento disciplinare con gli obiettivi specifici.</p>`;
+  }else if(voto>=5){
+    testo=`<p><strong>Quasi sufficiente.</strong> ${nome} conosce in parte gli argomenti, ma fatica a costruire un collegamento solido con gli SDG dell'Agenda 2030.</p><p>È necessario ripassare i moduli con attenzione ai termini tecnici e consolidare la comprensione dei principali obiettivi di sviluppo sostenibile legati all'alimentazione.</p>`;
+  }else{
+    testo=`<p><strong>Insufficiente.</strong> ${nome} mostra lacune significative nella conoscenza degli argomenti di Scienza degli Alimenti e nel loro collegamento all'Agenda 2030.</p><p>Si consiglia un ripasso completo dei tre moduli e uno studio mirato degli SDG collegati: in particolare SDG 2, 3, 6, 12, 13 e 15.</p>`;
   }
-  document.getElementById('commento-disp').innerHTML = testo;
+  document.getElementById('commento-disp').innerHTML=testo;
 
-  // Salva registro
-  const reg = getRegistro();
-  reg.push({ nome:S.nome, classe:S.classe, voto, data: new Date().toLocaleDateString('it-IT') });
-  localStorage.setItem('verifica_reg', JSON.stringify(reg));
+  // Salva
+  const reg=getRegistro();
+  reg.push({nome:S.nome,classe:S.classe,voto,data:new Date().toLocaleDateString('it-IT')});
+  localStorage.setItem('sa_registro',JSON.stringify(reg));
 }
 
-function nuova() {
+function nuova(){
   document.getElementById('fase-val').style.display='none';
   document.getElementById('fase-login').style.display='block';
   document.getElementById('inp-nome').value='';
   document.getElementById('inp-classe').value='';
 }
 
-// ── REGISTRO DOCENTE ──────────────────────────────────────────────────────────
-function getRegistro(){ return JSON.parse(localStorage.getItem('verifica_reg')||'[]'); }
+// ══════════════════════════════════════════════════════════════════
+//  REGISTRO DOCENTE
+// ══════════════════════════════════════════════════════════════════
+function getRegistro(){return JSON.parse(localStorage.getItem('sa_registro')||'[]');}
 
-function aggiornaDocente() {
-  const reg = getRegistro();
-  document.getElementById('s-tot').textContent = reg.length;
+function aggiornaDocente(){
+  const reg=getRegistro();
+  document.getElementById('s-tot').textContent=reg.length;
   if(reg.length>0){
-    const voti = reg.map(r=>r.voto);
-    document.getElementById('s-med').textContent = (voti.reduce((a,b)=>a+b,0)/voti.length).toFixed(1);
-    document.getElementById('s-max').textContent = Math.max(...voti);
-    document.getElementById('s-min').textContent = Math.min(...voti);
-    document.getElementById('btn-csv').disabled = false;
-  } else {
-    document.getElementById('s-med').textContent='—';
-    document.getElementById('s-max').textContent='—';
-    document.getElementById('s-min').textContent='—';
+    const voti=reg.map(r=>r.voto);
+    document.getElementById('s-med').textContent=(voti.reduce((a,b)=>a+b,0)/voti.length).toFixed(1);
+    document.getElementById('s-max').textContent=Math.max(...voti);
+    document.getElementById('s-min').textContent=Math.min(...voti);
+    document.getElementById('btn-csv').disabled=false;
+  }else{
+    ['s-med','s-max','s-min'].forEach(id=>document.getElementById(id).textContent='—');
   }
-  const lista = document.getElementById('lista-reg');
-  if(reg.length===0){ lista.innerHTML='<div class="vuoto">📭 Nessuna valutazione ancora.</div>'; return; }
-  lista.innerHTML = [...reg].reverse().map(r=>{
-    const cl = r.voto>=7?'verde':r.voto>=5?'oro':'rosso';
-    return `<div class="ritem">
+  const lista=document.getElementById('lista-reg');
+  if(reg.length===0){lista.innerHTML='<div class="vuoto">📭 Nessuna valutazione ancora.</div>';return;}
+  lista.innerHTML=[...reg].reverse().map(r=>{
+    const cl=r.voto>=7?'verde':r.voto>=5?'oro':'rosso';
+    return`<div class="ritem">
       <div><div class="rnome">${r.nome}</div><div class="rclasse">${r.classe}</div></div>
       <div style="text-align:right"><div class="rvoto ${cl}">${r.voto}/10</div><div class="rdata">${r.data}</div></div>
     </div>`;
@@ -370,19 +483,20 @@ function aggiornaDocente() {
 }
 
 function esportaCSV(){
-  const reg = getRegistro();
-  const csv = [['Nome','Classe','Voto','Data'],...reg.map(r=>[r.nome,r.classe,r.voto,r.data])].map(r=>r.join(',')).join('\n');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}));
-  a.download = 'registro_verifiche.csv';
+  const reg=getRegistro();
+  const csv=[['Nome','Classe','Voto','Data'],...reg.map(r=>[r.nome,r.classe,r.voto,r.data])].map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}));
+  a.download='registro_scienza_alimenti.csv';
   a.click();
 }
 
 function cancella(){
   if(confirm('Cancellare tutto il registro?')){
-    localStorage.removeItem('verifica_reg');
+    localStorage.removeItem('sa_registro');
     aggiornaDocente();
     document.getElementById('s-tot').textContent='0';
+    document.getElementById('btn-csv').disabled=true;
   }
 }
 </script>
