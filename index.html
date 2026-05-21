@@ -140,16 +140,23 @@ function addMsg(text, type) {
 
 async function callAPI(msgs, system) {
   const allMsgs = [{role:"system", content: system}, ...msgs];
+  // Tronca la conversazione se troppo lunga (max 20 messaggi)
+  const msgsTroncati = allMsgs.length > 22 ? [allMsgs[0], ...allMsgs.slice(-20)] : allMsgs;
   const r = await fetch("https://veri.mariasavarese.workers.dev/", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
       model: "llama-3.3-70b-versatile",
-      messages: allMsgs
+      max_tokens: 500,
+      messages: msgsTroncati
     })
   });
   if (!r.ok) throw new Error("HTTP " + r.status);
   const d = await r.json();
+  if (!d.choices || !d.choices[0] || !d.choices[0].message) {
+    const errMsg = d.error ? d.error.message : JSON.stringify(d);
+    throw new Error("Risposta API non valida: " + errMsg);
+  }
   return d.choices[0].message.content;
 }
 
